@@ -1,0 +1,35 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SistemaVendaVeiculos.Models
+{
+    [Table("Enderecos")]
+    public class Endereco
+    {
+        [Key]
+        public int EnderecoId { get; set; }
+        [Required]
+        [StringLength(200)]
+        public string? Logradouro { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string? Numero { get; set; }
+        [StringLength(100)]
+        public string? Complemento { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string? Bairro { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string? Cidade { get; set; }
+        [Required]
+        [StringLength(2)]
+        public string? Estado { get; set; }
+        [Required]
+        [StringLength(8)]
+        public string? CEP { get; set; }
+        [ForeignKey("Cliente")]
+        public int ClienteId { get; set; }
+        public virtual Cliente? Cliente { get; set; }
+    }
+}
