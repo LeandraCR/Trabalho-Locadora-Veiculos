@@ -19,13 +19,15 @@ namespace SistemaVendaVeiculos.Models
         public decimal ValorDiaria { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal? ValorTotal { get; set; }
+        
         [ForeignKey("Cliente")]
         [Required]
         public int ClienteId { get; set; }
-        public virtual Cliente? Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; } = null!;
+        
         [ForeignKey("Veiculo")]
         [Required]
         public int VeiculoId { get; set; }
-        public virtual Veiculo? Veiculo { get; set; }
+        public virtual Veiculo Veiculo { get; set; } = null!;
     }
 }

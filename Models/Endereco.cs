@@ -10,26 +10,29 @@ namespace SistemaVendaVeiculos.Models
         public int EnderecoId { get; set; }
         [Required]
         [StringLength(200)]
-        public string? Logradouro { get; set; }
+        public string Logradouro { get; set; } = string.Empty;
         [Required]
         [StringLength(20)]
-        public string? Numero { get; set; }
+        public string Numero { get; set; } = string.Empty;
+        
         [StringLength(100)]
         public string? Complemento { get; set; }
+        
         [Required]
         [StringLength(100)]
-        public string? Bairro { get; set; }
+        public string Bairro { get; set; } = string.Empty;
         [Required]
         [StringLength(100)]
-        public string? Cidade { get; set; }
+        public string Cidade { get; set; } = string.Empty;
         [Required]
         [StringLength(2)]
-        public string? Estado { get; set; }
+        public string Estado { get; set; } = string.Empty;
         [Required]
         [StringLength(8)]
-        public string? CEP { get; set; }
+        public string CEP { get; set; } = string.Empty;
+        
         [ForeignKey("Cliente")]
         public int ClienteId { get; set; }
-        public virtual Cliente? Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; } = null!;
     }
 }

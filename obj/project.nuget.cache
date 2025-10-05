@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YRqfFPdFBU8=",
+  "dgSpecHash": "ScKf7uAjj7U=",
   "success": true,
-  "projectFilePath": "C:\\Users\\leera\\OneDrive\\Documentos\\TRABALHOOPTATIVA\\TrabalhoLocadora\\SistemaVendaVeiculos\\SistemaVendaVeiculos.csproj",
+  "projectFilePath": "C:\\Users\\leera\\OneDrive\\Documentos\\LOCADORA\\Trabalho-Locadora-Veiculos\\SistemaVendaVeiculos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\leera\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\leera\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

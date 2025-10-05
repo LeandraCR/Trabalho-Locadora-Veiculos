@@ -5167,11 +5167,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\leera\\OneDrive\\Documentos\\TRABALHOOPTATIVA\\TrabalhoLocadora\\SistemaVendaVeiculos\\SistemaVendaVeiculos.csproj",
+      "projectUniqueName": "C:\\Users\\leera\\OneDrive\\Documentos\\LOCADORA\\Trabalho-Locadora-Veiculos\\SistemaVendaVeiculos.csproj",
       "projectName": "SistemaVendaVeiculos",
-      "projectPath": "C:\\Users\\leera\\OneDrive\\Documentos\\TRABALHOOPTATIVA\\TrabalhoLocadora\\SistemaVendaVeiculos\\SistemaVendaVeiculos.csproj",
+      "projectPath": "C:\\Users\\leera\\OneDrive\\Documentos\\LOCADORA\\Trabalho-Locadora-Veiculos\\SistemaVendaVeiculos.csproj",
       "packagesPath": "C:\\Users\\leera\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leera\\OneDrive\\Documentos\\TRABALHOOPTATIVA\\TrabalhoLocadora\\SistemaVendaVeiculos\\obj\\",
+      "outputPath": "C:\\Users\\leera\\OneDrive\\Documentos\\LOCADORA\\Trabalho-Locadora-Veiculos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\leera\\AppData\\Roaming\\NuGet\\NuGet.Config"
