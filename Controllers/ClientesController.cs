@@ -16,19 +16,23 @@ namespace SistemaVendaVeiculos.Controllers
             _context = context;
         }
 
-        // GET: api/Clientes
+        /// <summary>
+        /// Obtém a lista de todos os clientes, incluindo os seus endereços.
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
         {
             return await _context.Clientes.Include(c => c.Endereco).ToListAsync();
         }
 
-        // GET: api/Clientes/5
+        /// <summary>
+        /// Obtém um cliente específico pelo seu ID, incluindo o seu endereço.
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<Cliente>> GetCliente(int id)
         {
             var cliente = await _context.Clientes
-                .Include(c => c.Endereco) // JOIN com Enderecos
+                .Include(c => c.Endereco)
                 .FirstOrDefaultAsync(c => c.ClienteId == id);
 
             if (cliente == null)
@@ -39,7 +43,9 @@ namespace SistemaVendaVeiculos.Controllers
             return cliente;
         }
 
-        // PUT: api/Clientes/5
+        /// <summary>
+        /// Atualiza um cliente existente.
+        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
@@ -69,7 +75,9 @@ namespace SistemaVendaVeiculos.Controllers
             return NoContent();
         }
 
-        // POST: api/Clientes
+        /// <summary>
+        /// Cria um novo cliente.
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
@@ -79,7 +87,9 @@ namespace SistemaVendaVeiculos.Controllers
             return CreatedAtAction("GetCliente", new { id = cliente.ClienteId }, cliente);
         }
 
-        // DELETE: api/Clientes/5
+        /// <summary>
+        /// Remove um cliente existente.
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCliente(int id)
         {
@@ -95,9 +105,9 @@ namespace SistemaVendaVeiculos.Controllers
             return NoContent();
         }
 
-        // --- FILTROS ESPECIAIS ---
-
-        // FILTRO 3: Buscar cliente pelo CPF (usa WHERE)
+        /// <summary>
+        /// FILTRO 3: Busca um cliente pelo seu número de CPF.
+        /// </summary>
         [HttpGet("por-cpf/{cpf}")]
         public async Task<ActionResult<Cliente>> GetClientePorCPF(string cpf)
         {

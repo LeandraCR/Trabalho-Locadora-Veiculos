@@ -16,14 +16,18 @@ namespace SistemaVendaVeiculos.Controllers
             _context = context;
         }
 
-        // GET: api/Enderecos
+        /// <summary>
+        /// Obtém a lista de todos os endereços.
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Endereco>>> GetEnderecos()
         {
             return await _context.Enderecos.ToListAsync();
         }
 
-        // GET: api/Enderecos/5
+        /// <summary>
+        /// Obtém um endereço específico pelo seu ID.
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<Endereco>> GetEndereco(int id)
         {
@@ -37,7 +41,9 @@ namespace SistemaVendaVeiculos.Controllers
             return endereco;
         }
 
-        // PUT: api/Enderecos/5
+        /// <summary>
+        /// Atualiza um endereço existente.
+        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEndereco(int id, Endereco endereco)
         {
@@ -67,11 +73,12 @@ namespace SistemaVendaVeiculos.Controllers
             return NoContent();
         }
 
-        // POST: api/Enderecos
+        /// <summary>
+        /// Cria um novo endereço para um cliente.
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult<Endereco>> PostEndereco(Endereco endereco)
         {
-            // Validação para garantir que o cliente existe antes de associar um endereço
             var cliente = await _context.Clientes.FindAsync(endereco.ClienteId);
             if(cliente == null)
             {
@@ -84,7 +91,9 @@ namespace SistemaVendaVeiculos.Controllers
             return CreatedAtAction("GetEndereco", new { id = endereco.EnderecoId }, endereco);
         }
 
-        // DELETE: api/Enderecos/5
+        /// <summary>
+        /// Remove um endereço existente.
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEndereco(int id)
         {

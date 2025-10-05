@@ -23,11 +23,13 @@ namespace SistemaVendaVeiculos.Models
         [ForeignKey("Cliente")]
         [Required]
         public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; } = null!;
+        // Alteração: Voltámos a colocar o '?'
+        public virtual Cliente? Cliente { get; set; }
         
         [ForeignKey("Veiculo")]
         [Required]
         public int VeiculoId { get; set; }
-        public virtual Veiculo Veiculo { get; set; } = null!;
+        // Alteração: Voltámos a colocar o '?'
+        public virtual Veiculo? Veiculo { get; set; }
     }
 }

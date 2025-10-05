@@ -33,6 +33,7 @@ namespace SistemaVendaVeiculos.Models
         
         [ForeignKey("Cliente")]
         public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; } = null!;
+        // Alteração: Voltámos a colocar o '?'
+        public virtual Cliente? Cliente { get; set; }
     }
 }

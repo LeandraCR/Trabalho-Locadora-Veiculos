@@ -16,20 +16,23 @@ namespace SistemaVendaVeiculos.Controllers
             _context = context;
         }
 
-        // GET: api/Veiculos
+        /// <summary>
+        /// Obtém a lista de todos os veículos, incluindo os dados dos seus fabricantes.
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Veiculo>>> GetVeiculos()
         {
-            // Usa Include para fazer o JOIN com a tabela de Fabricantes
             return await _context.Veiculos.Include(v => v.Fabricante).ToListAsync();
         }
 
-        // GET: api/Veiculos/5
+        /// <summary>
+        /// Obtém um veículo específico pelo seu ID, incluindo os dados do seu fabricante.
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<Veiculo>> GetVeiculo(int id)
         {
             var veiculo = await _context.Veiculos
-                .Include(v => v.Fabricante) // Inclui dados do fabricante
+                .Include(v => v.Fabricante)
                 .FirstOrDefaultAsync(v => v.VeiculoId == id);
 
             if (veiculo == null)
@@ -40,7 +43,9 @@ namespace SistemaVendaVeiculos.Controllers
             return veiculo;
         }
 
-        // PUT: api/Veiculos/5
+        /// <summary>
+        /// Atualiza um veículo existente.
+        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVeiculo(int id, Veiculo veiculo)
         {
@@ -70,7 +75,9 @@ namespace SistemaVendaVeiculos.Controllers
             return NoContent();
         }
 
-        // POST: api/Veiculos
+        /// <summary>
+        /// Cria um novo veículo.
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult<Veiculo>> PostVeiculo(Veiculo veiculo)
         {
@@ -80,7 +87,9 @@ namespace SistemaVendaVeiculos.Controllers
             return CreatedAtAction("GetVeiculo", new { id = veiculo.VeiculoId }, veiculo);
         }
 
-        // DELETE: api/Veiculos/5
+        /// <summary>
+        /// Remove um veículo existente.
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVeiculo(int id)
         {
@@ -96,21 +105,23 @@ namespace SistemaVendaVeiculos.Controllers
             return NoContent();
         }
         
-        // --- FILTROS ESPECIAIS ---
-
-        // FILTRO 1: Buscar veículos por nome do fabricante (usa JOIN)
+        /// <summary>
+        /// FILTRO 1: Busca veículos por parte do nome do fabricante.
+        /// </summary>
         [HttpGet("por-fabricante/{nomeFabricante}")]
         public async Task<ActionResult<IEnumerable<Veiculo>>> GetVeiculosPorFabricante(string nomeFabricante)
         {
             var veiculos = await _context.Veiculos
-                .Include(v => v.Fabricante) // JOIN com Fabricantes
-                .Where(v => v.Fabricante != null && v.Fabricante.Nome.Contains(nomeFabricante))
+                .Include(v => v.Fabricante)
+                .Where(v => v.Fabricante.Nome.Contains(nomeFabricante))
                 .ToListAsync();
             
             return Ok(veiculos);
         }
 
-        // FILTRO 2: Buscar veículos com quilometragem abaixo de um valor (usa WHERE)
+        /// <summary>
+        /// FILTRO 2: Busca veículos com quilometragem abaixo de um valor máximo.
+        /// </summary>
         [HttpGet("por-quilometragem/{kmMax}")]
         public async Task<ActionResult<IEnumerable<Veiculo>>> GetVeiculosPorQuilometragem(double kmMax)
         {

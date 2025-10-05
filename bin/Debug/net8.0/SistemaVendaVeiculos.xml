@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SistemaVendaVeiculos</name>
+    </assembly>
+    <members>
+        <member name="M:SistemaVendaVeiculos.Controllers.AlugueisController.GetAlugueis">
+            <summary>
+            Obtém a lista de todos os aluguéis, incluindo dados de cliente e veículo.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.AlugueisController.GetAluguel(System.Int32)">
+            <summary>
+            Obtém um aluguel específico pelo seu ID.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.AlugueisController.PutAluguel(System.Int32,SistemaVendaVeiculos.Models.Aluguel)">
+            <summary>
+            Atualiza um aluguel existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.AlugueisController.PostAluguel(SistemaVendaVeiculos.Models.Aluguel)">
+            <summary>
+            Cria um novo aluguel.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.AlugueisController.DeleteAluguel(System.Int32)">
+            <summary>
+            Remove um aluguel existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.AlugueisController.GetAlugueisAtivos">
+            <summary>
+            FILTRO 4: Busca aluguéis ativos (que ainda não foram devolvidos).
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.AlugueisController.GetAlugueisPorCliente(System.Int32)">
+            <summary>
+            FILTRO 5: Busca o histórico de aluguéis de um cliente específico.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.ClientesController.GetClientes">
+            <summary>
+            Obtém a lista de todos os clientes, incluindo os seus endereços.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.ClientesController.GetCliente(System.Int32)">
+            <summary>
+            Obtém um cliente específico pelo seu ID, incluindo o seu endereço.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.ClientesController.PutCliente(System.Int32,SistemaVendaVeiculos.Models.Cliente)">
+            <summary>
+            Atualiza um cliente existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.ClientesController.PostCliente(SistemaVendaVeiculos.Models.Cliente)">
+            <summary>
+            Cria um novo cliente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.ClientesController.DeleteCliente(System.Int32)">
+            <summary>
+            Remove um cliente existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.ClientesController.GetClientePorCPF(System.String)">
+            <summary>
+            FILTRO 3: Busca um cliente pelo seu número de CPF.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.EnderecosController.GetEnderecos">
+            <summary>
+            Obtém a lista de todos os endereços.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.EnderecosController.GetEndereco(System.Int32)">
+            <summary>
+            Obtém um endereço específico pelo seu ID.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.EnderecosController.PutEndereco(System.Int32,SistemaVendaVeiculos.Models.Endereco)">
+            <summary>
+            Atualiza um endereço existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.EnderecosController.PostEndereco(SistemaVendaVeiculos.Models.Endereco)">
+            <summary>
+            Cria um novo endereço para um cliente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.EnderecosController.DeleteEndereco(System.Int32)">
+            <summary>
+            Remove um endereço existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.FabricantesController.GetFabricantes">
+            <summary>
+            Obtém a lista de todos os fabricantes.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.FabricantesController.GetFabricante(System.Int32)">
+            <summary>
+            Obtém um fabricante específico pelo seu ID.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.FabricantesController.PutFabricante(System.Int32,SistemaVendaVeiculos.Models.Fabricante)">
+            <summary>
+            Atualiza um fabricante existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.FabricantesController.PostFabricante(SistemaVendaVeiculos.Models.Fabricante)">
+            <summary>
+            Cria um novo fabricante.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.FabricantesController.DeleteFabricante(System.Int32)">
+            <summary>
+            Remove um fabricante existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.VeiculosController.GetVeiculos">
+            <summary>
+            Obtém a lista de todos os veículos, incluindo os dados dos seus fabricantes.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.VeiculosController.GetVeiculo(System.Int32)">
+            <summary>
+            Obtém um veículo específico pelo seu ID, incluindo os dados do seu fabricante.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.VeiculosController.PutVeiculo(System.Int32,SistemaVendaVeiculos.Models.Veiculo)">
+            <summary>
+            Atualiza um veículo existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.VeiculosController.PostVeiculo(SistemaVendaVeiculos.Models.Veiculo)">
+            <summary>
+            Cria um novo veículo.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.VeiculosController.DeleteVeiculo(System.Int32)">
+            <summary>
+            Remove um veículo existente.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.VeiculosController.GetVeiculosPorFabricante(System.String)">
+            <summary>
+            FILTRO 1: Busca veículos por parte do nome do fabricante.
+            </summary>
+        </member>
+        <member name="M:SistemaVendaVeiculos.Controllers.VeiculosController.GetVeiculosPorQuilometragem(System.Double)">
+            <summary>
+            FILTRO 2: Busca veículos com quilometragem abaixo de um valor máximo.
+            </summary>
+        </member>
+        <member name="T:SistemaVendaVeiculos.Migrations.CriacaoInicial">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaVendaVeiculos.Migrations.CriacaoInicial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaVendaVeiculos.Migrations.CriacaoInicial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SistemaVendaVeiculos.Migrations.CriacaoInicial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -23,7 +23,8 @@ namespace SistemaVendaVeiculos.Models
         [Required]
         public int FabricanteId { get; set; }
 
-        public virtual Fabricante Fabricante { get; set; } = null!;
+        // Alteração: Voltámos a colocar o '?' para a criação via API funcionar corretamente.
+        public virtual Fabricante? Fabricante { get; set; }
         public virtual ICollection<Aluguel>? Alugueis { get; set; }
     }
 }

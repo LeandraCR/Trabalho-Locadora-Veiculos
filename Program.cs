@@ -1,6 +1,7 @@
 // Adicionando os 'usings' necessários para o DbContext e o SQL Server
 using Microsoft.EntityFrameworkCore;
 using SistemaVendaVeiculos.Data;
+using System.Text.Json.Serialization; // Adicionado para a configuração do JSON
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // --- Fim da Adição ---
 
 // Add services to the container.
-builder.Services.AddControllers();
+
+// ALTERAÇÃO: Configuramos o tradutor JSON para ignorar os "loops infinitos" (ciclos de referência).
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

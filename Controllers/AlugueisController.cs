@@ -16,19 +16,22 @@ namespace SistemaVendaVeiculos.Controllers
             _context = context;
         }
 
-        // GET: api/Alugueis
+        /// <summary>
+        /// Obtém a lista de todos os aluguéis, incluindo dados de cliente e veículo.
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Aluguel>>> GetAlugueis()
         {
-            // Usa dois Includes para fazer JOIN com Clientes e Veiculos
             return await _context.Alugueis
                 .Include(a => a.Cliente)
                 .Include(a => a.Veiculo)
-                .ThenInclude(v => v.Fabricante) // JOIN aninhado: Aluguel -> Veiculo -> Fabricante
+                .ThenInclude(v => v.Fabricante)
                 .ToListAsync();
         }
 
-        // GET: api/Alugueis/5
+        /// <summary>
+        /// Obtém um aluguel específico pelo seu ID.
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<Aluguel>> GetAluguel(int id)
         {
@@ -46,7 +49,9 @@ namespace SistemaVendaVeiculos.Controllers
             return aluguel;
         }
 
-        // PUT: api/Alugueis/5
+        /// <summary>
+        /// Atualiza um aluguel existente.
+        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAluguel(int id, Aluguel aluguel)
         {
@@ -76,7 +81,9 @@ namespace SistemaVendaVeiculos.Controllers
             return NoContent();
         }
 
-        // POST: api/Alugueis
+        /// <summary>
+        /// Cria um novo aluguel.
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult<Aluguel>> PostAluguel(Aluguel aluguel)
         {
@@ -86,7 +93,9 @@ namespace SistemaVendaVeiculos.Controllers
             return CreatedAtAction("GetAluguel", new { id = aluguel.AluguelId }, aluguel);
         }
 
-        // DELETE: api/Alugueis/5
+        /// <summary>
+        /// Remove um aluguel existente.
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAluguel(int id)
         {
@@ -102,9 +111,9 @@ namespace SistemaVendaVeiculos.Controllers
             return NoContent();
         }
 
-        // --- FILTROS ESPECIAIS ---
-
-        // FILTRO 4: Buscar aluguéis ativos (que ainda não foram devolvidos) (usa WHERE e JOIN)
+        /// <summary>
+        /// FILTRO 4: Busca aluguéis ativos (que ainda não foram devolvidos).
+        /// </summary>
         [HttpGet("ativos")]
         public async Task<ActionResult<IEnumerable<Aluguel>>> GetAlugueisAtivos()
         {
@@ -117,7 +126,9 @@ namespace SistemaVendaVeiculos.Controllers
             return Ok(alugueis);
         }
         
-        // FILTRO 5: Buscar histórico de aluguéis de um cliente específico (usa WHERE e JOIN)
+        /// <summary>
+        /// FILTRO 5: Busca o histórico de aluguéis de um cliente específico.
+        /// </summary>
         [HttpGet("por-cliente/{clienteId}")]
         public async Task<ActionResult<IEnumerable<Aluguel>>> GetAlugueisPorCliente(int clienteId)
         {

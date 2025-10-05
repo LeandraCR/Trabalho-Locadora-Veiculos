@@ -16,14 +16,18 @@ namespace SistemaVendaVeiculos.Controllers
             _context = context;
         }
 
-        // GET: api/Fabricantes
+        /// <summary>
+        /// Obtém a lista de todos os fabricantes.
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Fabricante>>> GetFabricantes()
         {
             return await _context.Fabricantes.ToListAsync();
         }
 
-        // GET: api/Fabricantes/5
+        /// <summary>
+        /// Obtém um fabricante específico pelo seu ID.
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<Fabricante>> GetFabricante(int id)
         {
@@ -31,19 +35,21 @@ namespace SistemaVendaVeiculos.Controllers
 
             if (fabricante == null)
             {
-                return NotFound(); // Retorna 404 Not Found se o fabricante não existir
+                return NotFound();
             }
 
             return fabricante;
         }
 
-        // PUT: api/Fabricantes/5
+        /// <summary>
+        /// Atualiza um fabricante existente.
+        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFabricante(int id, Fabricante fabricante)
         {
             if (id != fabricante.FabricanteId)
             {
-                return BadRequest(); // Retorna 400 Bad Request se os IDs não baterem
+                return BadRequest();
             }
 
             _context.Entry(fabricante).State = EntityState.Modified;
@@ -64,10 +70,12 @@ namespace SistemaVendaVeiculos.Controllers
                 }
             }
 
-            return NoContent(); // Retorna 204 No Content em caso de sucesso
+            return NoContent();
         }
 
-        // POST: api/Fabricantes
+        /// <summary>
+        /// Cria um novo fabricante.
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult<Fabricante>> PostFabricante(Fabricante fabricante)
         {
@@ -77,7 +85,9 @@ namespace SistemaVendaVeiculos.Controllers
             return CreatedAtAction("GetFabricante", new { id = fabricante.FabricanteId }, fabricante);
         }
 
-        // DELETE: api/Fabricantes/5
+        /// <summary>
+        /// Remove um fabricante existente.
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFabricante(int id)
         {
