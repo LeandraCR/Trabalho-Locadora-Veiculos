@@ -1,115 +1,70 @@
-# 🚗 Sistema de Venda de Veículos
+# API de Gerenciamento de Veículos
 
-O **Sistema de Venda de Veículos** é uma aplicação desenvolvida em **C#** com **ASP.NET Core** e **Entity Framework Core**, com o objetivo de gerenciar o cadastro, a venda e o aluguel de veículos.  
-A aplicação oferece funcionalidades completas de CRUD, integração com banco de dados SQL Server e endpoints RESTful organizados e seguros.
+Este projeto é uma aplicação backend desenvolvida para o gerenciamento de veículos, permitindo o cadastro, consulta, atualização e exclusão de informações relacionadas a automóveis. O sistema foi estruturado com foco em boas práticas de desenvolvimento e documentação, garantindo organização e facilidade de uso.
 
----
+## 🚗 Funcionalidades Principais
 
-## 🧩 Visão Geral
+- **Cadastro de veículos:** permite registrar novos veículos com informações detalhadas.  
+- **Listagem de veículos:** exibe todos os veículos cadastrados.  
+- **Consulta individual:** busca um veículo específico pelo ID.  
+- **Atualização de dados:** possibilita alterar informações de um veículo existente.  
+- **Remoção de veículos:** exclui um veículo do sistema.
 
-O sistema permite gerenciar veículos, fabricantes, clientes e endereços, além de registrar operações de aluguel, mantendo um controle eficiente sobre as informações e seus relacionamentos.
+## 🧩 Estrutura do Projeto
 
-Ele foi desenvolvido seguindo o padrão **Model-View-Controller (MVC)** e utiliza o **Entity Framework Core** com o padrão **Code-First** para geração automática do banco de dados.
+O sistema segue uma arquitetura organizada em camadas, dividindo responsabilidades de forma clara entre:
+- **Model:** definição das entidades e estrutura dos dados.  
+- **Controller:** controle das requisições e respostas HTTP.  
+- **Service:** camada de regras de negócio.  
+- **Repository:** interface de comunicação com o banco de dados.
 
----
+## 📄 Documentação da API (Swagger)
 
-## 🛠️ Tecnologias Utilizadas
+A aplicação conta com **integração do Swagger**, que fornece uma interface interativa para explorar e testar as rotas da API.  
+O Swagger permite visualizar os endpoints disponíveis, parâmetros esperados e respostas retornadas, facilitando a compreensão e o uso da aplicação.
 
-- **Linguagem:** C#  
-- **Framework:** ASP.NET Core 8.0  
-- **ORM:** Entity Framework Core 8.0  
-- **Banco de Dados:** SQL Server Express  
-- **Ferramentas:** Swagger / Postman para testes de API  
-
----
-
-## 🗃️ Estrutura do Banco de Dados
-
-O sistema possui cinco entidades principais:
-
-1. **`Veiculo`** — Contém informações sobre o veículo (modelo, ano, quilometragem, status, valor, etc.).  
-2. **`Fabricante`** — Representa a marca do veículo (exemplo: Fiat, Chevrolet, Volkswagen).  
-3. **`Cliente`** — Armazena dados dos clientes, como nome, CPF, e-mail e telefone.  
-4. **`Aluguel`** — Controla as operações de aluguel, relacionando um cliente a um veículo e registrando datas e valores.  
-5. **`Endereco`** — Relaciona-se com o cliente em uma relação 1:1, armazenando informações completas de endereço.
-
-O banco é gerado automaticamente via migrações do **Entity Framework**.
-
-### ⚙️ Comandos de Geração do Banco
-
-```bash
-# Criar a migração
-dotnet ef migrations add CriacaoInicial
-
-# Atualizar o banco de dados
-dotnet ef database update
+Para acessar a documentação, execute o projeto e acesse no navegador:  
+```
+http://localhost:8080/swagger-ui/index.html
 ```
 
----
+## 🧪 Testes e Evidências
 
-## 🚀 Funcionalidades Principais
+Foram realizados testes para verificar o correto funcionamento das rotas e validações do sistema.  
+Esses testes garantem que as principais operações — como criação, leitura, atualização e exclusão de veículos — estejam executando de forma estável e conforme esperado.
 
-### 🔹 Endpoints CRUD
-A API disponibiliza operações de **criação, leitura, atualização e exclusão** para todas as entidades:
-- `/api/veiculos`
-- `/api/fabricantes`
-- `/api/clientes`
-- `/api/alugueis`
-- `/api/enderecos`
+As evidências de testes estão documentadas e podem ser utilizadas para validação da API e conferência de resultados esperados.
 
-### 🔹 Validação de Dados e Tratamento de Erros
-- Validação de CPF único e formato correto  
-- Campos obrigatórios e limites de tamanho  
-- Tratamento de exceções com mensagens padronizadas em JSON  
-- Retornos claros em casos de erro (400, 404, 500)
+## ⚙️ Tecnologias Utilizadas
 
-### 🔹 Consultas e Filtros Avançados
-O sistema permite filtros dinâmicos com **joins** entre entidades, possibilitando:
-- Buscar veículos por fabricante, ano ou disponibilidade  
-- Consultar clientes de determinada cidade  
-- Listar veículos alugados com informações do cliente e fabricante  
-- Verificar aluguéis ativos e históricos  
+- Java / Spring Boot  
+- Swagger (para documentação da API)  
+- JPA / Hibernate  
+- H2 Database (ambiente de testes)  
+- Maven
 
----
-
-## 🧪 Como Executar o Projeto
+## 🚀 Como Executar o Projeto
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/sistema-veiculos.git
+   git clone <url-do-repositorio>
    ```
+
 2. Acesse o diretório do projeto:
    ```bash
-   cd sistema-veiculos
+   cd api-veiculos
    ```
-3. Restaure as dependências:
+
+3. Execute o projeto:
    ```bash
-   dotnet restore
+   mvn spring-boot:run
    ```
-4. Atualize o banco de dados:
+
+4. Acesse a documentação interativa no navegador:
    ```bash
-   dotnet ef database update
+   http://localhost:8080/swagger-ui/index.html
    ```
-5. Execute a aplicação:
-   ```bash
-   dotnet run
-   ```
-6. Acesse a documentação interativa via Swagger:  
-   [http://localhost:5000/swagger](http://localhost:5000/swagger)
 
 ---
 
-## 💡 Possíveis Melhorias Futuras
-
-- Implementação de autenticação e controle de acesso (JWT)  
-- Integração com gateway de pagamento para vendas online  
-- Dashboard administrativo com gráficos de desempenho  
-- Implementação de testes automatizados  
-
----
-
-## 👩‍💻 Desenvolvedora
-
-**Leandra Costa Ramos**  
-Engenharia de Software — Backend Developer  
-💼 Desenvolvimento de soluções em .NET, APIs RESTful e banco de dados relacionais.
+Desenvolvido por **Leandra Costa Ramos** 💜
