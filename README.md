@@ -1,70 +1,87 @@
-# API de Gerenciamento de Veículos
+# Sistema de Venda de Veículos - Projeto de Backend
 
-Este projeto é uma aplicação backend desenvolvida para o gerenciamento de veículos, permitindo o cadastro, consulta, atualização e exclusão de informações relacionadas a automóveis. O sistema foi estruturado com foco em boas práticas de desenvolvimento e documentação, garantindo organização e facilidade de uso.
+Este projeto é parte da avaliação da disciplina de Backend, com o objetivo de desenvolver um sistema completo de venda de veículos, desde a modelagem do banco de dados até a criação de uma API RESTful funcional.
 
-## 🚗 Funcionalidades Principais
+## Tecnologias Utilizadas
 
-- **Cadastro de veículos:** permite registrar novos veículos com informações detalhadas.  
-- **Listagem de veículos:** exibe todos os veículos cadastrados.  
-- **Consulta individual:** busca um veículo específico pelo ID.  
-- **Atualização de dados:** possibilita alterar informações de um veículo existente.  
-- **Remoção de veículos:** exclui um veículo do sistema.
+- **Linguagem**: C#
+- **Framework**: ASP.NET Core 8.0
+- **ORM**: Entity Framework Core 8.0
+- **Banco de Dados**: SQL Server Express
+- **Documentação**: Swagger (OpenAPI)
 
-## 🧩 Estrutura do Projeto
+## Etapa 1: Modelagem do Banco de Dados
 
-O sistema segue uma arquitetura organizada em camadas, dividindo responsabilidades de forma clara entre:
-- **Model:** definição das entidades e estrutura dos dados.  
-- **Controller:** controle das requisições e respostas HTTP.  
-- **Service:** camada de regras de negócio.  
-- **Repository:** interface de comunicação com o banco de dados.
+Nesta primeira etapa, foi realizada a modelagem e a criação da estrutura inicial do banco de dados utilizando o padrão **Code-First** do Entity Framework Core.
 
-## 📄 Documentação da API (Swagger)
+### Entidades Modeladas
 
-A aplicação conta com **integração do Swagger**, que fornece uma interface interativa para explorar e testar as rotas da API.  
-O Swagger permite visualizar os endpoints disponíveis, parâmetros esperados e respostas retornadas, facilitando a compreensão e o uso da aplicação.
+O banco de dados foi projetado com 5 entidades inter-relacionadas:
 
-Para acessar a documentação, execute o projeto e acesse no navegador:  
+- **Fabricante**: A marca do veículo.
+- **Veiculo**: O veículo, que pertence a um Fabricante.
+- **Cliente**: O cliente que pode alugar um veículo.
+- **Endereco**: Entidade adicional para guardar o endereço de um Cliente.
+- **Aluguel**: Tabela que relaciona um Cliente e um Veiculo, registrando a operação de aluguel.
+
+### Processo de Criação
+
+O banco de dados **LocadoraVeiculosDB** e suas tabelas foram gerados através dos seguintes comandos do Entity Framework Core:
+
+```bash
+# 1. Cria o arquivo de migração (a "receita" do banco)
+dotnet ef migrations add CriacaoInicial
+
+# 2. Aplica a migração, criando o banco de dados físico
+dotnet ef database update
 ```
-http://localhost:8080/swagger-ui/index.html
+
+## Etapa 2: Implementação do Backend (API)
+
+Nesta segunda etapa, foi desenvolvida uma **API RESTful** com endpoints CRUD para todas as 5 entidades do sistema, utilizando o padrão de **Controllers** do ASP.NET Core.
+
+### Endpoints CRUD
+
+Foram criados **Controllers** para cada entidade, expondo os métodos HTTP padrão para manipulação de dados:
+
+- `GET /api/{entidade}`: Lista todos os registros.
+- `GET /api/{entidade}/{id}`: Busca um registro por ID.
+- `POST /api/{entidade}`: Cria um novo registro.
+- `PUT /api/{entidade}/{id}`: Atualiza um registro existente.
+- `DELETE /api/{entidade}/{id}`: Remove um registro.
+
+### Filtros Especiais com Joins
+
+Para cumprir os requisitos, foram implementados 5 endpoints de filtro que utilizam **JOINs** (através do método `Include()` do Entity Framework Core):
+
+- `GET /api/Veiculos/por-fabricante/{nomeFabricante}`: Retorna todos os veículos de um determinado fabricante.
+- `GET /api/Veiculos/por-quilometragem/{kmMax}`: Retorna veículos com quilometragem abaixo de um valor especificado.
+- `GET /api/Clientes/por-cpf/{cpf}`: Busca um cliente específico pelo seu CPF, incluindo o seu endereço.
+- `GET /api/Alugueis/ativos`: Lista todos os aluguéis que ainda não tiveram o veículo devolvido.
+- `GET /api/Alugueis/por-cliente/{clienteId}`: Retorna o histórico de aluguéis de um cliente específico.
+
+## Etapa 3: Testes e Documentação
+
+Esta etapa focou em garantir a qualidade, a funcionalidade e a clareza da API desenvolvida.
+
+### 1. Integração do Swagger
+
+O **Swagger** foi integrado nativamente ao projeto para fornecer uma interface de usuário interativa, permitindo a visualização e o teste de todos os endpoints diretamente pelo navegador.
+
+### 2. Documentação das APIs
+
+Para enriquecer a documentação gerada pelo Swagger, foram adicionados **comentários XML** (`///`) a todos os endpoints nos Controllers. Estes comentários fornecem:
+
+- Resumos sobre a funcionalidade de cada rota.
+- Parâmetros esperados.
+- Possíveis códigos de resposta (ex.: 200, 201, 404).
+
+Isso cumpre os requisitos de documentação do projeto.
+
+### 3. Realização de Testes com Evidências
+
+Todos os endpoints CRUD e os filtros especiais foram testados utilizando a interface do **Swagger** para simular requisições reais à API. As capturas de tela de cada teste bem-sucedido (com respostas como **200 OK**, **201 Created**, etc.) foram salvas e estão disponíveis na pasta:
+
 ```
-
-## 🧪 Testes e Evidências
-
-Foram realizados testes para verificar o correto funcionamento das rotas e validações do sistema.  
-Esses testes garantem que as principais operações — como criação, leitura, atualização e exclusão de veículos — estejam executando de forma estável e conforme esperado.
-
-As evidências de testes estão documentadas e podem ser utilizadas para validação da API e conferência de resultados esperados.
-
-## ⚙️ Tecnologias Utilizadas
-
-- Java / Spring Boot  
-- Swagger (para documentação da API)  
-- JPA / Hibernate  
-- H2 Database (ambiente de testes)  
-- Maven
-
-## 🚀 Como Executar o Projeto
-
-1. Clone o repositório:
-   ```bash
-   git clone <url-do-repositorio>
-   ```
-
-2. Acesse o diretório do projeto:
-   ```bash
-   cd api-veiculos
-   ```
-
-3. Execute o projeto:
-   ```bash
-   mvn spring-boot:run
-   ```
-
-4. Acesse a documentação interativa no navegador:
-   ```bash
-   http://localhost:8080/swagger-ui/index.html
-   ```
-
----
-
-Desenvolvido por **Leandra Costa Ramos** 💜
+evidencias-testes/
+```
